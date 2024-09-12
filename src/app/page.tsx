@@ -114,7 +114,9 @@ export default function Home() {
           <CardHeader>
             <CardTitle>wiki{"{obj}"}</CardTitle>
             <CardDescription>
-              A brief description of the wiki object and its purpose.
+              <text className="font-bold text-white">The social media consolidator. </text>
+
+              Publish cool images, and chat with them to learn more!
             </CardDescription>
           </CardHeader>
           <CardFooter>
