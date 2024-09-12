@@ -131,7 +131,7 @@ export default function Home() {
                   <DialogTitle>Upload new {"{obj}"}</DialogTitle>
                   <DialogDescription>
                     Add a new image, with a brief description. Upload when
-                    you're done!
+                    you&#39;re done!
                   </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
@@ -171,9 +171,7 @@ export default function Home() {
             className="cursor-pointer overflow-hidden bg-background transition-transform hover:scale-105"
             onClick={() => setSelectedImage(index)}
           >
-            <div className="relative pb-[75%]">
-              {" "}
-              {/* 4:3 aspect ratio */}
+            <div className="relative pb-[75%]"> {/* 4:3 aspect ratio */}
               <img
                 src={image.url}
                 alt={image.name}
