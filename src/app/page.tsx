@@ -1,7 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Card } from "~/components/ui/card"
+import { Card, CardTitle, CardHeader, CardDescription, CardFooter } from "~/components/ui/card"
+import { Button } from '~/components/ui/button'
+import { Upload } from 'lucide-react'
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
@@ -33,10 +35,16 @@ export default function Home() {
     <div className="container mx-auto p-4 bg-background text-gray-100 min-h-screen">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {/* Side Card */}
-        <Card className="bg-gray-800 row-span-2 hidden md:block border-gray-700">
-          <div className="h-full flex items-center justify-center text-gray-400">
-            Side Card
-          </div>
+        <Card className="hidden md:block border-gray-700">
+          <CardHeader>
+            <CardTitle>wiki{'{obj}'}</CardTitle>
+            <CardDescription>A brief description of the wiki object and its purpose.</CardDescription>
+          </CardHeader>
+          <CardFooter>
+            <Button className="w-full">
+              <Upload className="mr-2 h-4 w-4" /> Upload
+            </Button>
+          </CardFooter>
         </Card>
 
         {/* Image Grid */}
