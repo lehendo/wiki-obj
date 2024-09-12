@@ -11,7 +11,6 @@ import {
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -22,7 +21,7 @@ import {
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
 
-import { Upload, Copy } from "lucide-react";
+import { Upload } from "lucide-react";
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -114,23 +113,25 @@ export default function Home() {
           <CardHeader>
             <CardTitle>wiki{"{obj}"}</CardTitle>
             <CardDescription>
-              <text className="font-bold text-white">The social media consolidator. </text>
-
+              <text className="font-bold text-white">
+                The social media consolidator.{" "}
+              </text>
               Publish cool images, and chat with them to learn more!
             </CardDescription>
           </CardHeader>
           <CardFooter>
             <Dialog>
               <DialogTrigger asChild>
-            <Button className="w-full">
-              <Upload className="mr-2 h-4 w-4" /> Upload
-            </Button>
+                <Button className="w-full">
+                  <Upload className="mr-2 h-4 w-4" /> Upload
+                </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
                   <DialogTitle>Upload new {"{obj}"}</DialogTitle>
                   <DialogDescription>
-                    Add a new image, with a brief description. Upload when you're done!
+                    Add a new image, with a brief description. Upload when
+                    you're done!
                   </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
