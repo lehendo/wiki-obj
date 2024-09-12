@@ -1,18 +1,25 @@
 import * as React from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "~/lib/utils"
 
 const Card = React.forwardRef<
     HTMLDivElement,
-    React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+    React.HTMLAttributes<HTMLDivElement> & { isSelected?: boolean; isAnySelected?: boolean }
+>(({ className, isSelected, isAnySelected, ...props }, ref) => (
     <motion.div
         ref={ref}
         className={cn(
             "rounded-xl border bg-card text-card-foreground shadow",
+            isSelected ? "z-10" : "z-0",
             className
         )}
         layout
+        animate={{
+            scale: isSelected ? 1.05 : 1,
+            opacity: isAnySelected ? (isSelected ? 1 : 0.5) : 1,
+            filter: isAnySelected ? (isSelected ? "blur(0px)" : "blur(2px)") : "blur(0px)",
+        }}
+        transition={{ duration: 0.3 }}
         {...props}
     />
 ))
