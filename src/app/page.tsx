@@ -25,6 +25,7 @@ import { Input } from "~/components/ui/input";
 
 import { Upload } from "lucide-react";
 import { Textarea } from "~/components/ui/textarea";
+import Image from "next/image";
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
