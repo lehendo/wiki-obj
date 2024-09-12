@@ -66,11 +66,13 @@ export default function Home() {
           onClick={() => setSelectedImage(null)}
         >
           <Card className="max-w-3xl max-h-full p-4 bg-gray-800 border-gray-700">
-            <img
-              src={images[selectedImage].url}
-              alt={images[selectedImage].name}
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
+            {images[selectedImage] && ( // Check if image exists
+              <img
+                src={images[selectedImage].url}
+                alt={images[selectedImage].name}
+                className="max-w-full max-h-full object-contain rounded-lg"
+              />
+            )}
           </Card>
         </div>
       )}
