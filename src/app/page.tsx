@@ -30,7 +30,7 @@ export default function Home() {
   ]
 
   return (
-    <div className="container mx-auto p-4 bg-gray-900 text-gray-100 min-h-screen">
+    <div className="container mx-auto p-4 bg-background text-gray-100 min-h-screen">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {/* Side Card */}
         <Card className="bg-gray-800 row-span-2 hidden md:block border-gray-700">
@@ -43,7 +43,7 @@ export default function Home() {
         {images.map((image, index) => (
           <Card
             key={index}
-            className="cursor-pointer overflow-hidden bg-gray-800 border-gray-700 transition-transform hover:scale-105"
+            className="cursor-pointer overflow-hidden bg-background border-gray-700 transition-transform hover:scale-105"
             onClick={() => setSelectedImage(index)}
           >
             <div className="relative pb-[75%]"> {/* 4:3 aspect ratio */}
