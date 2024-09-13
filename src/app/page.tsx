@@ -22,11 +22,11 @@ import {
 } from "~/components/ui/dialog";
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
-
 import { Upload } from "lucide-react";
 import { Textarea } from "~/components/ui/textarea";
 
 import { BorderBeam } from "~/components/magicui/border-beam";
+import ImageChatbot from "~/components/image-chatbot";
 
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -111,10 +111,10 @@ export default function Home() {
   ];
 
   return (
-    <div className="container mx-auto min-h-screen bg-background p-4">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {/* Side Card */}
-        <Card className="md:block">
+      <div className="container mx-auto min-h-screen bg-background p-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {/* Side Card */}
+          <Card className="md:block">
           <CardHeader>
             <CardTitle>wiki{"{obj}"}</CardTitle>
             <CardDescription>
@@ -170,77 +170,71 @@ export default function Home() {
         </Card>
 
         {/* Image Grid */}
-        {images.map((image, index) => (
-          <Card
-            key={index}
-            className="cursor-pointer overflow-hidden bg-background transition-transform hover:scale-105"
-            onClick={() => setSelectedImage(index)}
-          >
-            <div className="relative pb-[75%]"> {/* 4:3 aspect ratio */}
-              <img
-                src={image.url}
-                alt={image.name}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute bottom-2 left-2 rounded bg-gray-900 bg-opacity-70 px-2 py-1 text-xs font-semibold text-gray-200">
-                {image.name}
-              </div>
-            </div>
-          </Card>
-        ))}
-      </div>
-
-      <AnimatePresence>
-        {selectedImage !== null && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
-          >
-            <div className="flex w-full max-w-6xl gap-10 p-4">
-              <motion.div
-                className="w-1/2"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{ duration: 0.3 }}
+          {images.map((image, index) => (
+              <Card
+                  key={index}
+                  className="cursor-pointer overflow-hidden bg-background transition-transform hover:scale-105"
+                  onClick={() => setSelectedImage(index)}
               >
-                {images[selectedImage] && (
+                <div className="relative pb-[75%]">
                   <img
-                    src={images[selectedImage].url}
-                    alt={images[selectedImage].name}
-                    className="h-full w-full rounded-lg object-cover"
+                      src={image.url}
+                      alt={image.name}
+                      className="absolute inset-0 h-full w-full object-cover"
                   />
-                )}
-              </motion.div>
+                  <div className="absolute bottom-2 left-2 rounded bg-gray-900 bg-opacity-70 px-2 py-1 text-xs font-semibold text-gray-200">
+                    {image.name}
+                  </div>
+                </div>
+              </Card>
+          ))}
+        </div>
+
+        <AnimatePresence>
+          {selectedImage !== null && (
               <motion.div
-                className="w-1/2"
-                initial={{ y: "100%", opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: "100%", opacity: 0 }}
-                transition={{ duration: 0.5 }} // Slowed down the animation
+                  className="fixed inset-0 z-50 flex items-center justify-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setSelectedImage(null)}
               >
-                <Card className="flex h-full w-full flex-col bg-black p-6">
-                  <CardHeader>
-                    <CardTitle>{images[selectedImage]?.name}</CardTitle>
-                    <CardDescription>
-                      Description of {images[selectedImage]?.name}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <p>This is where you can add more details about the image and implement chatbot.</p>
-                  </CardContent>
-                  <CardFooter className="justify-end">
-                    <Button onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}>Close</Button>
-                  </CardFooter>
-                </Card>
+                <div className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+                <motion.div
+                    className="relative flex w-full max-w-7xl gap-8 p-6 bg-black rounded-lg"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="w-1/2">
+                    {images[selectedImage] && (
+                        <img
+                            src={images[selectedImage].url}
+                            alt={images[selectedImage].name}
+                            className="w-full h-auto rounded-lg object-cover"
+                        />
+                    )}
+                  </div>
+                  <div className="flex flex-col w-1/2 h-[80vh]">
+                    <CardHeader>
+                      <CardTitle>{images[selectedImage]?.name}</CardTitle>
+                      <CardDescription>
+                        Description of {images[selectedImage]?.name}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-grow overflow-y-auto">
+                      <ImageChatbot />
+                    </CardContent>
+                    <CardFooter className="justify-end">
+                      <Button onClick={() => setSelectedImage(null)}>Close</Button>
+                    </CardFooter>
+                  </div>
+                </motion.div>
               </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+          )}
+        </AnimatePresence>
+      </div>
   );
 }

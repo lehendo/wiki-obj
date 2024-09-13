@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { openai } from '@ai-sdk/openai';
 import { streamText, convertToCoreMessages } from 'ai';
 
